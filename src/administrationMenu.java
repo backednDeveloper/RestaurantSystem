@@ -4,7 +4,8 @@ public class administrationMenu {
                 "1 - For entering a new product into the database " + "\n" +
                 "2 - For product repair in the base " + "\n" +
                 "3 - To delete a product from the database " + "\n" +
-                "4 - Exit System " + "\n" +
+                "4 - Return Restaurant Menu " + "\n" +
+                "5 - Exit System " + "\n" +
                 "Select one of the options above : "
         );
         switch (choose) {
@@ -18,6 +19,10 @@ public class administrationMenu {
                 System.out.println("Deleting informations : ");
                 datasInputsClass.inputDeleteInformations();
             case 4:
+                System.out.println("Returned Menu : ");
+                return homePanel.panel();
+
+            case 5:
                 System.out.println(" ---------- Exiting System ---------- ");
                 System.exit(-1);
         }

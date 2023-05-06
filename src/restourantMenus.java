@@ -6,6 +6,7 @@ public class restourantMenus {
         );
         switch (typeOfProduct) {
             case 1:
+                boolean found = false;
                 for (meals meals : globalDatas.mealsData) {
                     String meals1 = globalDatas.mapMealsString.get(meals).getMeal();
                     int mealsPrice = globalDatas.mapMealsInt.get(meals).getMealprice();
@@ -14,9 +15,15 @@ public class restourantMenus {
                             " ------------- Prices ------------- " + "\n" +
                             mealsPrice
                     );
-                    break;
+                    found = true;
                 }
+                if(!found){
+                    System.out.println("Not yet information. ");
+                    return homePanel.panel();
+                }
+                break;
             case 2:
+                boolean found1 = false;
                 for (drinks drinks : globalDatas.drinksData) {
                     String drinks1 = globalDatas.mapDrinksString.get(drinks).getDrinkname();
                     int drinkPrices = globalDatas.mapDrinksInt.get(drinks).getDrinkprice();
@@ -25,8 +32,13 @@ public class restourantMenus {
                             " ------------- Prices ------------- " + "\n" +
                             drinkPrices
                     );
-                    break;
+                    found1=true;
                 }
+                if(!found1){
+                    System.out.println("Not yet information. ");
+                    return homePanel.panel();
+                }
+                break;
             default:
                 System.out.println("Wrong choose !!! ");
                 break;
@@ -58,6 +70,7 @@ public class restourantMenus {
                         return restourantMenus.restourantMenus();
                     }
                 }
+                break;
             case 2:
                 String drinkname = printsMethods.inputRequiredString("Enter the name of the product : ");
                 for (drinks drinks : globalDatas.drinksData) {
@@ -79,7 +92,10 @@ public class restourantMenus {
                         return restourantMenus.restourantMenus();
                     }
                 }
+                break;
+            default:
+                System.out.println("Wrong added. ");
         }
-        return restourantMenus.restourantMenus();
+        return homePanel.panel();
     }
 }

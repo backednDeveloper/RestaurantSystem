@@ -22,4 +22,8 @@ public class meals {
     public void setMealprice(int mealprice) {
         this.mealprice = mealprice;
     }
+    public String getInfoMeals(){
+        System.out.println("Meal name : " + meal + "\n" + "Meal price : " + mealprice);
+        return getInfoMeals();
+    }
 }

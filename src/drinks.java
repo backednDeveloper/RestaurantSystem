@@ -22,4 +22,10 @@ public class drinks {
     public void setDrinkprice(int drinkprice) {
         this.drinkprice = drinkprice;
     }
+    public String getInfo(){
+        System.out.println("Drink name : " + drinkname + "\n" +
+                "Drink price : " + drinkprice
+                );
+        return getInfo();
+    }
 }

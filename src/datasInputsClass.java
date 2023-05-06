@@ -1,35 +1,39 @@
 public class datasInputsClass {
     public static String inputProductInformations() {
-        int typeOfProduct1 = printsMethods.inputRequiredInt("1 - For meals " + "\n" +
-                "2 - For drinks " + "\n" +
-                "Select one of the options above : "
-        );
-        switch (typeOfProduct1) {
-            case 1:
-                for (meals meals : globalDatas.mealsData) {
-                    String meals1 = globalDatas.mapMealsString.get(meals).getMeal();
-                    int mealsPrice = globalDatas.mapMealsInt.get(meals).getMealprice();
-                    System.out.println(" ------------- Meals ------------- " + "\n" +
-                            meals1 +
-                            " ------------- Prices ------------- " + "\n" +
-                            mealsPrice
-                    );
-                }
-                break;
-            case 2:
-                for (drinks drinks : globalDatas.drinksData) {
-                    String drinks1 = globalDatas.mapDrinksString.get(drinks).getDrinkname();
-                    int drinkPrices = globalDatas.mapDrinksInt.get(drinks).getDrinkprice();
-                    System.out.println(" ------------- Drinks ------------- " + "\n" +
-                            drinks1 +
-                            " ------------- Prices ------------- " + "\n" +
-                            drinkPrices
-                    );
-                }
-                break;
-            default:
-                System.out.println("Wrong choose !!! ");
-                break;
+        int sizeMeals = globalDatas.mealsData.size();
+        int sizeDrinks = globalDatas.drinksData.size();
+        if (sizeMeals > 0 && sizeDrinks > 0) {
+            int typeOfProduct1 = printsMethods.inputRequiredInt("1 - For meals " + "\n" +
+                    "2 - For drinks " + "\n" +
+                    "Select one of the options above : "
+            );
+            switch (typeOfProduct1) {
+                case 1:
+                    for (meals meals : globalDatas.mealsData) {
+                        String meals1 = globalDatas.mapMealsString.get(meals).getMeal();
+                        int mealsPrice = globalDatas.mapMealsInt.get(meals).getMealprice();
+                        System.out.println(" ------------- Meals ------------- " + "\n" +
+                                meals1 +
+                                " ------------- Prices ------------- " + "\n" +
+                                mealsPrice
+                        );
+                    }
+                    break;
+                case 2:
+                    for (drinks drinks : globalDatas.drinksData) {
+                        String drinks1 = globalDatas.mapDrinksString.get(drinks).getDrinkname();
+                        int drinkPrices = globalDatas.mapDrinksInt.get(drinks).getDrinkprice();
+                        System.out.println(" ------------- Drinks ------------- " + "\n" +
+                                drinks1 +
+                                " ------------- Prices ------------- " + "\n" +
+                                drinkPrices
+                        );
+                    }
+                    break;
+                default:
+                    System.out.println("Wrong choose !!! ");
+                    break;
+            }
         }
         int typeOfProduct = printsMethods.inputRequiredInt("1 - For the food products " + "\n" +
                 "2 - For the  drinks products " + "\n" +
@@ -39,42 +43,45 @@ public class datasInputsClass {
             case 1:
                 String mealname = printsMethods.inputRequiredString("Enter the name of the product : ");
                 int mealprice = printsMethods.inputRequiredInt("Enter the price of the product price : ");
-                for (meals meals : globalDatas.mealsData) {
+                meals meals = new meals(mealname, mealprice);
                     boolean sameproductsearch = false;
                     meals mealsFound = globalDatas.mapMealsString.put(mealname, meals);
                     if (mealsFound != null) {
                         System.out.println("This product is available on our list. " + "\n" + "Please add another product name " + "\n"); // after use excepitons methods
-                        return datasInputsClass.inputProductInformations();
-                    }
-
-                    if (!sameproductsearch) {
-                        meals meals2 = new meals(mealname, mealprice);
-                        globalDatas.mealsData.add(meals2);
-                        globalDatas.mapMealsString.put(mealname, meals);
-                        globalDatas.mapMealsInt.put(mealprice, meals);
-                        System.out.println("New product added to the list. ");
-                    }
-                }
-            case 2:
-                String drinkname = printsMethods.inputRequiredString("Enter the name of the product : ");
-                int drinkprice = printsMethods.inputRequiredInt("Enter the price of the product price : ");
-                for (drinks drinks : globalDatas.drinksData) {
-                    boolean sameproductsearch = false;
-                    drinks serachProduct = globalDatas.mapDrinksString.put(drinkname, drinks);
-                    if (serachProduct != null) {
-                        System.out.println("This product is available on our list. " + "\n" + "Please add another product name"); // after use excepitons methods
                         sameproductsearch = true;
                         return datasInputsClass.inputProductInformations();
                     }
                     if (!sameproductsearch) {
-                        drinks drinks2 = new drinks(drinkname, drinkprice);
-                        globalDatas.drinksData.add(drinks2);
-                        globalDatas.mapDrinksString.put(drinkname, drinks);
-                        globalDatas.mapDrinksInt.put(drinkprice, drinks);
-                        System.out.println("New product added to the list. ");
+                        globalDatas.mealsData.add(meals);
+                        globalDatas.mapMealsString.put(mealname, meals);
+                        globalDatas.mapMealsInt.put(mealprice, meals);
+                        System.out.println("New product added to the list. " + "\n" +
+                                "Product information : " + meals.getInfoMeals()
+                                );
                     }
-
-                }
+                break;
+            case 2:
+                String drinkname = printsMethods.inputRequiredString("Enter the name of the product : ");
+                int drinkprice = printsMethods.inputRequiredInt("Enter the price of the product price : ");
+                drinks drinks2 = new drinks(drinkname, drinkprice);
+                    boolean sameproductsearch1 = false;
+                    drinks serachProduct = globalDatas.mapDrinksString.put(drinkname, drinks2);
+                    if (serachProduct != null) {
+                        System.out.println("This product is available on our list. " + "\n" + "Please add another product name"); // after use excepitons methods
+                        sameproductsearch1 = true;
+                        return datasInputsClass.inputProductInformations();
+                    }
+                    if (!sameproductsearch1) {
+                        globalDatas.drinksData.add(drinks2);
+                        globalDatas.mapDrinksString.put(drinkname, drinks2);
+                        globalDatas.mapDrinksInt.put(drinkprice, drinks2);
+                        System.out.println("New product added to the list. " + "\n" +
+                                "Product information : " + drinks2.getInfo()
+                                );
+                    }
+                break;
+            default:
+                System.out.println("Wrong choose. ");
         }
         return administrationMenu.menu();
     }
