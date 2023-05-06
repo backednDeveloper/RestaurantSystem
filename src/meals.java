@@ -1,10 +1,20 @@
 public class meals {
+    private int placeInMenu;
     private String meal;
     private int mealprice;
 
-    public meals(String meal, int mealprice) {
+    public meals(String meal, int mealprice, int placeInMenu) {
         this.meal = meal;
         this.mealprice = mealprice;
+        this.placeInMenu=placeInMenu;
+    }
+
+    public int getPlaceInMenu() {
+        return placeInMenu;
+    }
+
+    public void setPlaceInMenu(int placeInMenu) {
+        this.placeInMenu = placeInMenu;
     }
 
     public String getMeal() {
@@ -23,7 +33,7 @@ public class meals {
         this.mealprice = mealprice;
     }
     public String getInfoMeals(){
-        System.out.println("Meal name : " + meal + "\n" + "Meal price : " + mealprice);
-        return getInfoMeals();
+        System.out.println("Meal name : " + getMeal() + "\n" + "Meal price : " + getMealprice());
+        return meal;
     }
 }

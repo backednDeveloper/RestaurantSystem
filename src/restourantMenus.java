@@ -8,12 +8,11 @@ public class restourantMenus {
             case 1:
                 boolean found = false;
                 for (meals meals : globalDatas.mealsData) {
-                    String meals1 = globalDatas.mapMealsString.get(meals).getMeal();
-                    int mealsPrice = globalDatas.mapMealsInt.get(meals).getMealprice();
+                    meals.getInfoMeals();
                     System.out.println(" ------------- Meals ------------- " + "\n" +
-                            meals1 +
+                            meals.getMeal() + "\n" +
                             " ------------- Prices ------------- " + "\n" +
-                            mealsPrice
+                            meals.getMealprice()
                     );
                     found = true;
                 }

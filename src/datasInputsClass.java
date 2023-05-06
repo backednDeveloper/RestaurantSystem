@@ -43,7 +43,8 @@ public class datasInputsClass {
             case 1:
                 String mealname = printsMethods.inputRequiredString("Enter the name of the product : ");
                 int mealprice = printsMethods.inputRequiredInt("Enter the price of the product price : ");
-                meals meals = new meals(mealname, mealprice);
+                int placeInMenu = printsMethods.inputRequiredInt("Enter the number of the place in the menu : ");
+                meals meals = new meals(mealname, mealprice, placeInMenu);
                     boolean sameproductsearch = false;
                     meals mealsFound = globalDatas.mapMealsString.put(mealname, meals);
                     if (mealsFound != null) {
@@ -55,15 +56,17 @@ public class datasInputsClass {
                         globalDatas.mealsData.add(meals);
                         globalDatas.mapMealsString.put(mealname, meals);
                         globalDatas.mapMealsInt.put(mealprice, meals);
+                        placeInMenu++;
                         System.out.println("New product added to the list. " + "\n" +
-                                "Product information : " + meals.getInfoMeals()
+                                "Product information : "
                                 );
                     }
                 break;
             case 2:
                 String drinkname = printsMethods.inputRequiredString("Enter the name of the product : ");
                 int drinkprice = printsMethods.inputRequiredInt("Enter the price of the product price : ");
-                drinks drinks2 = new drinks(drinkname, drinkprice);
+                int placeInMenuDrink = printsMethods.inputRequiredInt("Enter the number of the place in the menu : ");
+                drinks drinks2 = new drinks(drinkname, drinkprice, placeInMenuDrink);
                     boolean sameproductsearch1 = false;
                     drinks serachProduct = globalDatas.mapDrinksString.put(drinkname, drinks2);
                     if (serachProduct != null) {
@@ -76,7 +79,7 @@ public class datasInputsClass {
                         globalDatas.mapDrinksString.put(drinkname, drinks2);
                         globalDatas.mapDrinksInt.put(drinkprice, drinks2);
                         System.out.println("New product added to the list. " + "\n" +
-                                "Product information : " + drinks2.getInfo()
+                                "Product information : "
                                 );
                     }
                 break;
@@ -93,14 +96,19 @@ public class datasInputsClass {
         );
         switch (typeOfProduct1) {
             case 1:
+                boolean found = false;
                 for (meals meals : globalDatas.mealsData) {
-                    String meals1 = globalDatas.mapMealsString.get(meals).getMeal();
-                    int mealsPrice = globalDatas.mapMealsInt.get(meals).getMealprice();
+                    meals.getInfoMeals();
                     System.out.println(" ------------- Meals ------------- " + "\n" +
-                            meals1 +
+                            meals.getMeal() + "\n" +
                             " ------------- Prices ------------- " + "\n" +
-                            mealsPrice
+                            meals.getMealprice()
                     );
+                    found = true;
+                }
+                if(!found){
+                    System.out.println("Not yet information. ");
+                    return homePanel.panel();
                 }
                 break;
             case 2:
@@ -126,12 +134,14 @@ public class datasInputsClass {
             case 1:
                 String MealName = printsMethods.inputRequiredString("Enter the name of the product : ");
                 int MealPrice = printsMethods.inputRequiredInt("Enter the name of the product price :");
+                int placeInMenu = printsMethods.inputRequiredInt("Enter the number of the place in the menu");
                 boolean found1 = false;
                 for (meals meals : globalDatas.mealsData) {
                     meals foundMeal = globalDatas.mapMealsString.put(MealName, meals);
                     if (foundMeal != null) {
                         meals.setMeal(MealName);
                         meals.setMealprice(MealPrice);
+                        meals.setPlaceInMenu(placeInMenu);
                         found1 = true;
                     }
                     if (!found1) {
@@ -142,12 +152,14 @@ public class datasInputsClass {
             case 2:
                 String newDrinkName = printsMethods.inputRequiredString("Enter the name of the product : ");
                 int newDrinkPrice = printsMethods.inputRequiredInt("Enter the name of the product price :");
+                int placeInMenuDrink = printsMethods.inputRequiredInt("Enter the number of the place in the menu");
                 boolean found = false;
                 for (drinks drinks : globalDatas.drinksData) {
                     drinks foundDrinks = globalDatas.mapDrinksString.put(newDrinkName, drinks);
                     if (foundDrinks != null) {
                         drinks.setDrinkname(newDrinkName);
                         drinks.setDrinkprice(newDrinkPrice);
+                        drinks.setPlaceInMenuDrink(placeInMenuDrink);
                         found = true;
                     }
                     if (!found) {
@@ -199,11 +211,12 @@ public class datasInputsClass {
             case 1:
                 String MealName = printsMethods.inputRequiredString("Enter the name of the product : ");
                 int MealPrice = printsMethods.inputRequiredInt("Enter the name of the product price :");
+                int placeInMenu = printsMethods.inputRequiredInt("Enter the number of the place in the menu");
                 boolean found1 = false;
                 for (meals meals : globalDatas.mealsData) {
                     meals foundMeal = globalDatas.mapMealsString.put(MealName, meals);
                     if (foundMeal != null) {
-                        meals meals1 = new meals(MealName, MealPrice);
+                        meals meals1 = new meals(MealName, MealPrice, placeInMenu);
                         globalDatas.mealsData.remove(meals1);
                         globalDatas.mapMealsString.remove(MealName);
                         globalDatas.mapMealsInt.remove(MealPrice);
@@ -217,11 +230,12 @@ public class datasInputsClass {
             case 2:
                 String DrinkName = printsMethods.inputRequiredString("Enter the name of the product : ");
                 int DrinkPrice = printsMethods.inputRequiredInt("Enter the name of the product price :");
+                int placeInMenuDrink = printsMethods.inputRequiredInt("Enter the number of the place in the menu");
                 boolean found = false;
                 for (drinks drinks : globalDatas.drinksData) {
                     drinks foundDrinks = globalDatas.mapDrinksString.put(DrinkName, drinks);
                     if (foundDrinks != null) {
-                        drinks drinks1 = new drinks(DrinkName, DrinkPrice);
+                        drinks drinks1 = new drinks(DrinkName, DrinkPrice, placeInMenuDrink);
                         globalDatas.mapDrinksString.remove(DrinkName);
                         globalDatas.mapDrinksInt.remove(DrinkPrice);
                         globalDatas.drinksData.remove(drinks1);
