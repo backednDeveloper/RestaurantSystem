@@ -33,9 +33,9 @@ public class datasInputsClass {
                             int mealprice = printsMethods.inputRequiredInt("Enter the price of the product price : ");
                             meals newMeal = new meals(mealname1, mealprice, placeInMenu1);
                             globalDatas.mealsData.add(newMeal);
-                            globalDatas.mapMeals.put(mealname1, meals);
-                            globalDatas.mapMeals.put(placeInMenu1, meals);
-                            globalDatas.mapMeals.put(mealprice, meals);
+                            globalDatas.mapMeals.put(newMeal.getMeal(), meals);
+                            globalDatas.mapMeals.put(newMeal.getPlaceInMenu(), meals);
+                            globalDatas.mapMeals.put(newMeal.getMealprice(), meals);
                             newMeal.getInfoMeals();
                         }
                     }
@@ -80,9 +80,9 @@ public class datasInputsClass {
                             int drinkprice = printsMethods.inputRequiredInt("Enter the price of the product price : ");
                             drinks newdrink = new drinks(drinkname1, drinkprice, placeInMenuDrink1);
                             globalDatas.drinksData.add(newdrink);
-                            globalDatas.mapDrinks.put(drinkname1, drinks);
-                            globalDatas.mapDrinks.put(placeInMenuDrink1, drinks);
-                            globalDatas.mapDrinks.put(drinkprice, drinks);
+                            globalDatas.mapDrinks.put(drinkname1, newdrink);
+                            globalDatas.mapDrinks.put(placeInMenuDrink1, newdrink);
+                            globalDatas.mapDrinks.put(drinkprice, newdrink);
                             newdrink.getInfo();
                         }
                     }
@@ -96,6 +96,9 @@ public class datasInputsClass {
                     int drinkprice = printsMethods.inputRequiredInt("Enter the price of the product price : ");
                     drinks newdrink = new drinks(drinkname, drinkprice, placeInMenuDrink);
                     globalDatas.drinksData.add(newdrink);
+                    globalDatas.mapDrinks.put(drinkname, newdrink);
+                    globalDatas.mapDrinks.put(placeInMenuDrink, newdrink);
+                    globalDatas.mapDrinks.put(drinkprice, newdrink);
                     newdrink.getInfo();
 
                 }
@@ -118,38 +121,38 @@ public class datasInputsClass {
                     meals.getInfoMeals();
                     String MealName = printsMethods.inputRequiredString("Enter the name of the product : ");
                     boolean found1 = false;
-                        meals foundMeal = globalDatas.mapMeals.put(MealName, meals);
-                        if (foundMeal != null) {
-                            int choose = printsMethods.inputRequiredInt("1 - Update for name " + "\n" +
-                                    "2 - Update for price " + "\n" +
-                                    "3 - Update for list number " + "\n" +
-                                    "Choose number of above : "
-                            );
-                            switch (choose) {
-                                case 1:
-                                    String newMealName = printsMethods.inputRequiredString("Enter the new name of the product : ");
-                                    meals.setMeal(newMealName);
-                                    found1 = true;
-                                    break;
-                                case 2:
-                                    int newMealPrice = printsMethods.inputRequiredInt("Enter the new price of product : ");
-                                    meals.setMealprice(newMealPrice);
-                                    found1 = true;
-                                    break;
-                                case 3:
-                                    int newMealList = printsMethods.inputRequiredInt("Enter the new list numberof product : ");
-                                    meals.setPlaceInMenu(newMealList);
-                                    found1 = true;
-                                    break;
-                                default:
-                                    System.out.println("Wrong entered .!!");
-                            }
+                    meals foundMeal = globalDatas.mapMeals.put(MealName, meals);
+                    if (foundMeal != null) {
+                        int choose = printsMethods.inputRequiredInt("1 - Update for name " + "\n" +
+                                "2 - Update for price " + "\n" +
+                                "3 - Update for list number " + "\n" +
+                                "Choose number of above : "
+                        );
+                        switch (choose) {
+                            case 1:
+                                String newMealName = printsMethods.inputRequiredString("Enter the new name of the product : ");
+                                meals.setMeal(newMealName);
+                                found1 = true;
+                                break;
+                            case 2:
+                                int newMealPrice = printsMethods.inputRequiredInt("Enter the new price of product : ");
+                                meals.setMealprice(newMealPrice);
+                                found1 = true;
+                                break;
+                            case 3:
+                                int newMealList = printsMethods.inputRequiredInt("Enter the new list numberof product : ");
+                                meals.setPlaceInMenu(newMealList);
+                                found1 = true;
+                                break;
+                            default:
+                                System.out.println("Wrong entered .!!");
+                        }
 
-                        }
-                        if (!found1) {
-                            System.out.println("No same product found with this name " + "\n");
-                            return datasInputsClass.inputProductUpdateInformations();
-                        }
+                    }
+                    if (!found1) {
+                        System.out.println("No same product found with this name " + "\n");
+                        return datasInputsClass.inputProductUpdateInformations();
+                    }
 
                     found = true;
                 }
