@@ -7,8 +7,8 @@ public class datasInputsClass {
         switch (typeOfProduct) {
             case 1:
                 boolean found = false;
-                for (meals meals : globalDatas.mealsData) {
-                    meals.getInfoMeals();
+                for (meals information : globalDatas.mealsData) {
+                    information.getInfoMeals();
                     String input = printsMethods.inputRequiredString("Enter the name of the new product : ");
                     String mealname = input.trim().toUpperCase();
                     int placeInMenu = printsMethods.inputRequiredInt("Enter the number of the place in the menu : ");
@@ -16,12 +16,10 @@ public class datasInputsClass {
                     if (globalDatas.mapMeals.containsKey(mealname)) {
                         System.out.println("This product is available on our list. " + "\n" + "Please add another product name " + "\n"); // after use excepitons methods
                         sameproductsearch = true;
-                        return datasInputsClass.inputProductInformations();
                     }
                     if (globalDatas.mapMeals.containsKey(placeInMenu)) {
                         System.out.println("This product list number is available on our list. " + "\n" + "Please add another number " + "\n"); // after use excepitons methods
                         sameproductsearch = true;
-                        return datasInputsClass.inputProductInformations();
                     }
                     if (!sameproductsearch) {
                         int mealprice = printsMethods.inputRequiredInt("Enter the price of the product price : ");
@@ -31,16 +29,16 @@ public class datasInputsClass {
                         globalDatas.mapMeals.put(newMeal.getPlaceInMenu(), newMeal);
                         globalDatas.mapMeals.put(newMeal.getMealprice(), newMeal);
                         newMeal.getInfoMeals();
+                        found = true;
                     }
-                    found = true;
                 }
                 if (!found) {
                     System.out.println("Not yet information. " + "\n");
-                    String input = printsMethods.inputRequiredString("Enter the name of the new product : ");
-                    String mealname = input.trim().toUpperCase();
-                    int placeInMenu = printsMethods.inputRequiredInt("Enter the number of the place in the menu : ");
+                    String input1 = printsMethods.inputRequiredString("Enter the name of the new product : ");
+                    String mealname1 = input1.trim().toUpperCase();
+                    int placeInMenu1 = printsMethods.inputRequiredInt("Enter the number of the place in the menu : ");
                     int mealprice = printsMethods.inputRequiredInt("Enter the price of the product price : ");
-                    meals newMeal = new meals(mealname, mealprice, placeInMenu);
+                    meals newMeal = new meals(mealname1, mealprice, placeInMenu1);
                     globalDatas.mealsData.add(newMeal);
                     globalDatas.mapMeals.put(newMeal.getMeal(), newMeal);
                     globalDatas.mapMeals.put(newMeal.getPlaceInMenu(), newMeal);
