@@ -17,7 +17,7 @@ public class restourantMenus {
                     if (choose == 0) {
                         break;
                     } else if (choose < 1 || choose > globalDatas.mealsData.size()) {
-                        System.out.println("Geçersiz seçim!");
+                        System.out.println("Wrong choose!");
                     } else {
                         meals choosProduct = globalDatas.mealsData.get(choose - 1);
                         int choosNumber = printsMethods.inputRequiredInt("Choose product order numbers : ");
