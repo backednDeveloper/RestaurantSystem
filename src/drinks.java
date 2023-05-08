@@ -34,8 +34,8 @@ public class drinks {
     }
 
     public String getInfo() {
-        System.out.println("Drink name : " + getDrinkname() + "\n" +
-                "Drink price : " + getDrinkprice()
+        System.out.println( "Drink list number : " + getPlaceInMenuDrink() + "Drink name : " + getDrinkname() + "\n" +
+                "Drink price : " + getDrinkprice() + "\n"
         );
         return getInfo();
     }

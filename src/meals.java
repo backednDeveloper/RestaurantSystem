@@ -33,7 +33,7 @@ public class meals {
         this.mealprice = mealprice;
     }
     public String getInfoMeals(){
-        System.out.println("Meal name : " + getMeal() + "\n" + "Meal price : " + getMealprice());
+        System.out.println( "Meal list number : " + getPlaceInMenu() + "\n" + "Meal name : " + getMeal() + "\n" + "Meal price : " + getMealprice() + "\n");
         return meal;
     }
 }

@@ -9,14 +9,9 @@ public class restourantMenus {
                 boolean found = false;
                 for (meals meals : globalDatas.mealsData) {
                     meals.getInfoMeals();
-                    System.out.println(" ------------- Meals ------------- " + "\n" +
-                            meals.getMeal() + "\n" +
-                            " ------------- Prices ------------- " + "\n" +
-                            meals.getMealprice()
-                    );
                     found = true;
                 }
-                if(!found){
+                if (!found) {
                     System.out.println("Not yet information. ");
                     return homePanel.panel();
                 }
@@ -24,16 +19,10 @@ public class restourantMenus {
             case 2:
                 boolean found1 = false;
                 for (drinks drinks : globalDatas.drinksData) {
-                    String drinks1 = globalDatas.mapDrinksString.get(drinks).getDrinkname();
-                    int drinkPrices = globalDatas.mapDrinksInt.get(drinks).getDrinkprice();
-                    System.out.println(" ------------- Drinks ------------- " + "\n" +
-                            drinks1 +
-                            " ------------- Prices ------------- " + "\n" +
-                            drinkPrices
-                    );
-                    found1=true;
+                    drinks.getInfo();
+                    found1 = true;
                 }
-                if(!found1){
+                if (!found1) {
                     System.out.println("Not yet information. ");
                     return homePanel.panel();
                 }
@@ -48,19 +37,18 @@ public class restourantMenus {
         );
         switch (typeOfProduct1) {
             case 1:
-                String mealname = printsMethods.inputRequiredString("Enter the name of the product : ");
-                for (meals meals : globalDatas.mealsData) {
+                int ordernumbers = 1;
+                while (ordernumbers >= 1) {
                     boolean sameproductsearch = false;
-                    meals mealsFound = globalDatas.mapMealsString.put(mealname, meals);
-                    if (mealsFound != null) {
-                        int ordernumbers = 0;
-                        orderInformationDatas orderInformationDatas = new orderInformationDatas(mealname, ordernumbers);
-                        while (ordernumbers > 0) {
+                    for (meals meals : globalDatas.mealsData) {
+                        String mealname = printsMethods.inputRequiredString("Enter the name of the product : ");
+                        meals mealsFound = globalDatas.mapMealsString.put(mealname, meals);
+                        if (mealsFound != null) {
+                            orderInformationDatas orderInformationDatas = new orderInformationDatas(mealname, ordernumbers);
                             globalDatas.orderInformations.add(orderInformationDatas);
+                            globalDatas.orderInformations.get(orderInformationDatas.getOrderNumbers()).getOrderInformations();
                             ordernumbers++;
-                            System.out.println("Your order number " + ordernumbers + " has been confirmed." + "\n" +
-                                    "Order informations : " + globalDatas.orderInformations.get(ordernumbers).getOrderInformations()
-                            );
+                            break;
                         }
                         sameproductsearch = true;
                     }
@@ -71,7 +59,7 @@ public class restourantMenus {
                 }
                 break;
             case 2:
-                String drinkname = printsMethods.inputRequiredString("Enter the name of the product : ");
+                /*String drinkname = printsMethods.inputRequiredString("Enter the name of the product : ");
                 for (drinks drinks : globalDatas.drinksData) {
                     boolean sameproduct = false;
                     drinks drinksfound = globalDatas.mapDrinksString.put(drinkname, drinks);
@@ -90,11 +78,11 @@ public class restourantMenus {
                         System.out.println("Please select an item on the menu. ");
                         return restourantMenus.restourantMenus();
                     }
-                }
+                }*/
                 break;
             default:
                 System.out.println("Wrong added. ");
         }
-        return homePanel.panel();
+        return restourantMenus.restourantMenus();
     }
 }
