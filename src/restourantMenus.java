@@ -35,7 +35,7 @@ public class restourantMenus {
                     boolean sameproductsearch = false;
                     for (meals information : globalDatas.mealsData) {
                         String mealname = printsMethods.inputRequiredString("Enter the name of the product : ");
-                        meals mealsFound = globalDatas.mapMealsString.put(mealname, information);
+                        meals mealsFound = globalDatas.mapMeals.put(mealname, information);
                         if (mealsFound != null) {
                             orderInformationDatas orderInformationDatas = new orderInformationDatas(mealname, ordernumbers);
                             globalDatas.orderInformations.add(orderInformationDatas);
@@ -66,7 +66,7 @@ public class restourantMenus {
                     boolean sameproductsearch = false;
                     for (drinks information1 : globalDatas.drinksData) {
                         String drinkName = printsMethods.inputRequiredString("Enter the name of the product : ");
-                        drinks drinkFound = globalDatas.mapDrinksString.put(drinkName, information1);
+                        drinks drinkFound = globalDatas.mapDrinks.put(drinkName, information1);
                         if (drinkFound != null) {
                             orderInformationDatas orderInformationDatas = new orderInformationDatas(drinkName, ordernumbers1);
                             globalDatas.orderInformations.add(orderInformationDatas);
