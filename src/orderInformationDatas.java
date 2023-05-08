@@ -15,7 +15,7 @@ public class orderInformationDatas {
         return orderNumbers;
     }
     public String getOrderInformations (){
-        System.out.println("Order : " + order + "\n" +
+        System.out.println("---------------- Order ---------------- "  + "\n" + "Product : " + order + "\n" +
                 "Order number : " + orderNumbers + "\n"
                 );
         return  getOrder();
